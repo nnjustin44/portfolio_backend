@@ -34,7 +34,6 @@ public class MainService {
 
     public ChatResponse initializeChat(String message) {
         try {
-            // Prepare the request payload for OpenAI
             Map<String, Object> requestPayload = new HashMap<>();
             requestPayload.put("model", "gpt-3.5-turbo");
             requestPayload.put("messages", java.util.Arrays.asList(
@@ -47,10 +46,8 @@ public class MainService {
             requestPayload.put("max_tokens", 150);
             requestPayload.put("temperature", 0.7);
 
-            // Convert to JSON
             String jsonPayload = objectMapper.writeValueAsString(requestPayload);
 
-            // Make the API call
             Response response = client.target(openAiApiUrl)
                     .request(MediaType.APPLICATION_JSON)
                     .header("Authorization", "Bearer " + openAiApiKey)
@@ -58,7 +55,7 @@ public class MainService {
                     .post(Entity.entity(jsonPayload, MediaType.APPLICATION_JSON));
 
             if (response.getStatus() == 200) {
-                // Parse the response
+
                 String responseBody = response.readEntity(String.class);
                 ObjectNode responseNode = (ObjectNode) objectMapper.readTree(responseBody);
 
@@ -75,7 +72,6 @@ public class MainService {
 
                 return chatResponse;
             } else {
-                // Log the error response
                 String errorBody = response.readEntity(String.class);
                 System.err.println("OpenAI API Error: " + response.getStatus() + " - " + errorBody);
                 return null;
