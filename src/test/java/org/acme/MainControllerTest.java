@@ -11,7 +11,7 @@ class MainControllerTest {
     @Test
     void testEndpoint() {
         given()
-                .when().get("/")
+                .when().get("/api")
                 .then()
                 .statusCode(200)
                 .body(is("Hello from Quarkus REST"));
