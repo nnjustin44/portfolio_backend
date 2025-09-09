@@ -1,6 +1,6 @@
 package org.acme.controller;
 
-import org.acme.service.MainService;
+import org.acme.service.ChatService;
 import org.acme.dto.request.ChatRequest;
 import org.acme.dto.response.ChatResponse;
 
@@ -14,10 +14,10 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 @Path("/")
-public class MainController {
+public class ChatController {
 
     @Inject
-    MainService mainService;
+    ChatService mainService;
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)

@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @ApplicationScoped
-public class MainService {
+public class ChatService {
 
     @ConfigProperty(name = "openai.api.key")
     String openAiApiKey;
@@ -27,7 +27,7 @@ public class MainService {
     private final Client client;
     private final ObjectMapper objectMapper;
 
-    public MainService() {
+    public ChatService() {
         this.client = ClientBuilder.newBuilder().build();
         this.objectMapper = new ObjectMapper();
     }
