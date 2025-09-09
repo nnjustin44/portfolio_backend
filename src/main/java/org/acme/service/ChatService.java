@@ -43,7 +43,7 @@ public class ChatService {
                             put("content", message);
                         }
                     }));
-            requestPayload.put("max_tokens", 150);
+            requestPayload.put("max_tokens", 100);
             requestPayload.put("temperature", 0.7);
 
             String jsonPayload = objectMapper.writeValueAsString(requestPayload);

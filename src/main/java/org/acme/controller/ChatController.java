@@ -13,11 +13,11 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-@Path("/")
+@Path("/api")
 public class ChatController {
 
     @Inject
-    ChatService mainService;
+    ChatService chatService;
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
@@ -37,7 +37,7 @@ public class ChatController {
                         .build();
             }
 
-            ChatResponse response = mainService.initializeChat(request.getMessage().trim());
+            ChatResponse response = chatService.initializeChat(request.getMessage().trim());
 
             if (response == null || response.getResponse() == null) {
                 return Response.status(500)

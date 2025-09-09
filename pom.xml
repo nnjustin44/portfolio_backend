@@ -40,6 +40,10 @@
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-rest-jackson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
             <artifactId>quarkus-junit5</artifactId>
             <scope>test</scope>
         </dependency>
@@ -50,15 +54,15 @@
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-rest-client</artifactId>
+            <artifactId>quarkus-rest-client</artifactId> <!-- For JSON handling -->
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-rest-client-jackson</artifactId> <!-- For JSON handling -->
+            <artifactId>quarkus-rest-client-jackson</artifactId> <!-- Optional, if using YAML config -->
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-config-yaml</artifactId> <!-- Optional, if using YAML config -->
+            <artifactId>quarkus-config-yaml</artifactId>
         </dependency>
     </dependencies>
 
