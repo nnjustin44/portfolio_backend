@@ -8,15 +8,6 @@ This document provides instructions for running the Portfolio Backend applicatio
 - Docker Compose installed
 - `.env` file with required environment variables
 
-## Environment Variables
-
-Create a `.env` file in the root directory with the following variables:
-
-```env
-OPENAI_API_KEY=your_openai_api_key_here
-OPENAI_API_URL=https://api.openai.com/v1/chat/completions
-```
-
 ## Quick Start
 
 ### Using Docker Compose (Recommended)
@@ -24,7 +15,7 @@ OPENAI_API_URL=https://api.openai.com/v1/chat/completions
 1. Build and run the application:
 
 ```bash
-docker-compose up --build
+docker compose up --build
 ```
 
 2. The application will be available at `http://localhost:8080`
@@ -32,13 +23,13 @@ docker-compose up --build
 3. To run in detached mode:
 
 ```bash
-docker-compose up -d --build
+docker compose up -d --build
 ```
 
 4. To stop the application:
 
 ```bash
-docker-compose down
+docker compose down
 ```
 
 ### Using Docker directly
@@ -97,12 +88,6 @@ If the Docker build fails:
 - Ensure you have sufficient disk space
 - Check that all required files are present
 - Verify your internet connection for dependency downloads
-
-### Environment Variable Issues
-
-- Verify your `.env` file exists and contains the required variables
-- Check that the OpenAI API key is valid
-- Ensure no extra spaces or quotes in environment variable values
 
 ## Development
 
