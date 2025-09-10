@@ -1,5 +1,15 @@
-*
-!target/*-runner
-!target/*-runner.jar
-!target/lib/*
-!target/quarkus-app/*
+# Ignore everything except what we need for the build
+target/
+!target/quarkus-app/
+.git/
+.gitignore
+*.md
+!README.md
+.DS_Store
+*.log
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+node_modules/
