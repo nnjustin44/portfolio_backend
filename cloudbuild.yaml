@@ -5,7 +5,7 @@ steps:
       [
         'build',
         '-t',
-        'us-east1-docker.pkg.dev/portfolioBackend-f2985/portfolio_backend/portfolioBackend/portfolioBackend:$COMMIT_SHA',
+        'us-east1-docker.pkg.dev/portfoliobackend-f2985/portfolio_backend/portfolioBackend/jnguyenportfoliobackend:$COMMIT_SHA',
         '.',
       ]
   # Push the image to Artifact Registry
@@ -13,7 +13,7 @@ steps:
     args:
       [
         'push',
-        'us-east1-docker.pkg.dev/portfolioBackend-f2985/portfolio_backend/portfolioBackend/portfolioBackend:$COMMIT_SHA',
+        'us-east1-docker.pkg.dev/portfoliobackend-f2985/portfolio_backend/portfolioBackend/jnguyenportfoliobackend:$COMMIT_SHA',
       ]
   # Deploy image to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -21,10 +21,10 @@ steps:
     args:
       - 'run'
       - 'deploy'
-      - 'portfolioBackend'
+      - 'jnguyenportfoliobackend'
       - '--image'
-      - 'us-east1-docker.pkg.dev/portfolioBackend-f2985/portfolio_backend/portfolioBackend/portfolioBackend:$COMMIT_SHA'
+      - 'us-east1-docker.pkg.dev/portfoliobackend-f2985/portfolio_backend/portfolioBackend/jnguyenportfoliobackend:$COMMIT_SHA'
       - '--region'
       - 'us-east1'
 images:
-  - 'us-east1-docker.pkg.dev/portfolioBackend-f2985/portfolio_backend/portfolioBackend/portfolioBackend:$COMMIT_SHA'
+  - 'us-east1-docker.pkg.dev/portfoliobackend-f2985/portfolio_backend/portfolioBackend/jnguyenportfoliobackend:$COMMIT_SHA'
