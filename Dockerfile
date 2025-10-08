@@ -8,8 +8,12 @@ FROM registry.access.redhat.com/ubi9/openjdk-21:1.23 AS build
 WORKDIR /app
 
 # Copy Maven wrapper and pom.xml first for better layer caching
-COPY mvnw mvnw.cmd pom.xml ./
-COPY .mvn .mvn
+COPY . .
+
+# Ensure mvnw is executable (optional, if not already executable in repo)
+USER root
+RUN chown -R 185:185 /app
+USER 185
 
 # Download dependencies (this layer will be cached if pom.xml doesn't change)
 RUN ./mvnw dependency:go-offline -B
