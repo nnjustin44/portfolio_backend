@@ -10,7 +10,8 @@ WORKDIR /app
 # Copy Maven wrapper and pom.xml first for better layer caching
 COPY . .
 RUN chmod +x mvnw
-
+# Switch back to non-root user
+USER 185
 # Download dependencies (this layer will be cached if pom.xml doesn't change)
 RUN ./mvnw dependency:go-offline -B
 
