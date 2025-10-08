@@ -9,6 +9,7 @@ WORKDIR /app
 
 # Copy Maven wrapper and pom.xml first for better layer caching
 COPY . .
+RUN chmod +x mvnw
 
 # Download dependencies (this layer will be cached if pom.xml doesn't change)
 RUN ./mvnw dependency:go-offline -B
