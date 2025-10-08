@@ -1,5 +1,6 @@
 package org.acme.service;
 
+import org.acme.helper.JonahPrompt;
 import org.acme.dto.request.ChatRequest;
 import org.acme.dto.response.ChatResponse;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
@@ -12,7 +13,9 @@ import jakarta.ws.rs.core.Response;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @ApplicationScoped
@@ -34,15 +37,17 @@ public class ChatService {
 
     public ChatResponse initializeChat(String message) {
         try {
+            Map<String, String> systemMessage = new HashMap<>();
+            systemMessage.put("role", "system");
+            systemMessage.put("content", JonahPrompt.trainingPrompt);
+
+            Map<String, String> userMessage = new HashMap<>();
+            userMessage.put("role", "user");
+            userMessage.put("content", message);
+
             Map<String, Object> requestPayload = new HashMap<>();
             requestPayload.put("model", "gpt-3.5-turbo");
-            requestPayload.put("messages", java.util.Arrays.asList(
-                    new HashMap<String, String>() {
-                        {
-                            put("role", "user");
-                            put("content", message);
-                        }
-                    }));
+            requestPayload.put("messages", Arrays.asList(systemMessage, userMessage));
             requestPayload.put("max_tokens", 100);
             requestPayload.put("temperature", 0.7);
 
@@ -55,7 +60,6 @@ public class ChatService {
                     .post(Entity.entity(jsonPayload, MediaType.APPLICATION_JSON));
 
             if (response.getStatus() == 200) {
-
                 String responseBody = response.readEntity(String.class);
                 ObjectNode responseNode = (ObjectNode) objectMapper.readTree(responseBody);
 

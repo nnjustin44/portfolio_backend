@@ -7,6 +7,7 @@ import org.acme.dto.response.ChatResponse;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.OPTIONS;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -23,6 +24,17 @@ public class ChatController {
     @Produces(MediaType.TEXT_PLAIN)
     public String hello() {
         return "Hello from Quarkus REST";
+    }
+
+    @OPTIONS
+    @Path("/chat")
+    public Response handleOptions() {
+        return Response.ok()
+                .header("Access-Control-Allow-Origin", "http://localhost:3000")
+                .header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+                .header("Access-Control-Allow-Headers", "Accept, Content-Type")
+                .header("Access-Control-Max-Age", "86400")
+                .build();
     }
 
     @POST
