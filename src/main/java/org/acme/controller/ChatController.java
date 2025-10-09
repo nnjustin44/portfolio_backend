@@ -24,7 +24,7 @@ public class ChatController {
     @Produces(MediaType.TEXT_PLAIN)
     public String hello() {
         return "                                                                          \n" + //
-                "                             Hello Quakrus REST!                          \n" + //
+                "                       Hello Quakrus REST!                          \n" + //
                 "                                                                          \n" + //
                 "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" + //
                 "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡇⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⣰⠂⠀⠀⣄⣰⣿⠁⠀⠀⠀⢀⣴⠀⢀⣤⡞⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" + //

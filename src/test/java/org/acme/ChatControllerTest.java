@@ -15,7 +15,7 @@ class MainControllerTest {
                 .then()
                 .statusCode(200)
                 .body(is("                                                                          \n" + //
-                        "                             Hello Quakrus REST!                          \n" + //
+                        "                       Hello Quakrus REST!                          \n" + //
                         "                                                                          \n" + //
                         "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" + //
                         "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡇⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⣰⠂⠀⠀⣄⣰⣿⠁⠀⠀⠀⢀⣴⠀⢀⣤⡞⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" + //
