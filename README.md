@@ -18,7 +18,7 @@ Runs on port 8080
 
 ## Packaging and running the application
 
-The application can be packaged using:
+The application can be packaged for deployment build:
 
 ```shell script
 ./mvnw package
