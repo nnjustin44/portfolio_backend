@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 
 @QuarkusTest
 class MainControllerTest {
@@ -47,6 +48,28 @@ class MainControllerTest {
                         "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠛⠉⠟⠉⢛⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⣿⣿⣿⡿⠇⠀⠁⠙⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" + //
                         "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠿⠛⠙⠟⠀⠐⢿⣿⠟⠿⠀⠈⠉⣿⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" + //
                         "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"));
+    }
+
+    @Test
+    void productionOriginIsAllowedForChatPreflight() {
+        given()
+                .header("Origin", "https://justinnguyen.us")
+                .header("Access-Control-Request-Method", "POST")
+                .when().options("/api/chat")
+                .then()
+                .statusCode(200)
+                .header("Access-Control-Allow-Origin", is("https://justinnguyen.us"));
+    }
+
+    @Test
+    void localhostOriginIsNotAllowedOutsideDevProfile() {
+        given()
+                .header("Origin", "http://localhost:3000")
+                .header("Access-Control-Request-Method", "POST")
+                .when().options("/api/chat")
+                .then()
+                .statusCode(403)
+                .header("Access-Control-Allow-Origin", nullValue());
     }
 
 }
