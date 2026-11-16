@@ -1,6 +1,8 @@
 package org.acme.controller;
 
 import org.acme.service.ChatService;
+import org.acme.service.AiServiceException;
+import java.util.Map;
 import org.acme.dto.request.ChatRequest;
 import org.acme.dto.response.ChatResponse;
 
@@ -65,7 +67,7 @@ public class ChatController {
         try {
             if (request == null || request.getMessage() == null || request.getMessage().trim().isEmpty()) {
                 return Response.status(400)
-                        .entity("Error: Input message required")
+                        .entity(Map.of("error", "Input message required", "code", "message_required"))
                         .build();
             }
 
@@ -79,9 +81,13 @@ public class ChatController {
 
             return Response.ok(response).build();
 
+        } catch (AiServiceException e) {
+            return Response.status(e.getStatus())
+                    .entity(Map.of("error", e.getMessage(), "code", e.getCode()))
+                    .build();
         } catch (Exception e) {
             return Response.status(500)
-                    .entity("Error: " + e.getMessage())
+                    .entity(Map.of("error", "Unexpected backend error", "code", "internal_error"))
                     .build();
         }
     }
